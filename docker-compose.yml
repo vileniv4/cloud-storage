@@ -6,13 +6,33 @@ services:
     container_name: cloud_storage_db
     environment:
       POSTGRES_DB: cloud_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: cloud_storage_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cloud_db
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-postgres}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-postgres}
+      APP_FILE_STORAGE_PATH: /app/uploads
+    ports:
+      - "8080:8080"
+    volumes:
       - file_storage:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   postgres_data:

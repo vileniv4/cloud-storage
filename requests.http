@@ -1,0 +1,21 @@
+### 1. Успешный логин (пароль из миграции V2: password)
+POST http://localhost:8080/cloud/login
+Content-Type: application/json
+
+{
+  "login": "testuser",
+  "password": "password123"
+}
+
+### 2. Неверный пароль (должен вернуть 400 Bad Request)
+POST http://localhost:8080/cloud/login
+Content-Type: application/json
+
+{
+  "login": "testuser",
+  "password": "wrongpassword"
+}
+
+### 3. Логаут (вставить в 'YOUR_TOKEN' реальный токен из шага 1)
+POST http://localhost:8080/cloud/logout
+auth-token: 19e75a16-5a34-4478-b50f-133294f1f449

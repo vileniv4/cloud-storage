@@ -1,0 +1,6 @@
+package ru.netology.cloudstorage.dto;
+
+public record ErrorResponse(
+        String message,
+        Integer id
+) {}
