@@ -8,7 +8,7 @@ PostgreSQL, Файловая система Docker Volume, Flyway, Hibernate, De
 
 Этап 2: База данных и сущности (Flyway миграции, Entity User и FileMetadata, Repositories).
 
-### Доработка от 17.09.2026:
+### Готово (доработка от 17.09.2026 по комментариям Максима Воронцова):
 
 1. Том file_storage теперь у приложения, а не у БД
 2. Dockerfile и сервис app в docker-compose
@@ -21,12 +21,23 @@ PostgreSQL, Файловая система Docker Volume, Flyway, Hibernate, De
 
 ### Далее (в работе):
 
-Этап 3: Механизм авторизации (Контроллер Login/Logout, Filter или Interceptor для проверки токена).
+Этап 3: Совместимость URL с FRONT (/login и /cloud/login)
 
-Этап 4: Работа с файлами (Реализация эндпоинтов: Upload, Download, Delete, Rename, List).
+Этап 4: CORS + корректные 401, если нет токена
 
-Этап 5: Настройка CORS.
+Этап 5: Расширить unit-тесты Mockito
 
-Этап 6: Тестирование (Unit-тесты для сервисов + Integration-тест с Testcontainers).
+Этап 6: Тест с Testcontainers чтобы запускался
 
 Этап 7: Проверка с Frontend-приложением.
+
+
+## Технологический стек
+
+- Java 17
+- Spring Boot 3.x (Web, Data JPA, Security, Validation)
+- PostgreSQL 15 (хранение метаданных пользователей и файлов)
+- Flyway (управление миграциями базы данных)
+- Docker & Docker Compose (контейнеризация приложения и базы данных)
+- JUnit 5, Mockito, Testcontainers (unit и интеграционное тестирование)
+- Lombok

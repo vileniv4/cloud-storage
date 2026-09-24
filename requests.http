@@ -16,6 +16,6 @@ Content-Type: application/json
   "password": "wrongpassword"
 }
 
-### 3. Логаут (вставить в 'YOUR_TOKEN' реальный токен из шага 1)
+### 3. Логаут (вставить в 'YOUR_TOKEN' токен из шага 1)
 POST http://localhost:8080/cloud/logout
-auth-token: 19e75a16-5a34-4478-b50f-133294f1f449
+auth-token: 19cd8614-6aa6-49b9-bbf2-8cac6ed6e4b1
